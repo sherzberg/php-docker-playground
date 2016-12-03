@@ -1,0 +1,14 @@
+version: "2"
+
+services:
+    app:
+        build: .
+        volumes:
+         - ./test-src:/var/www/html
+        ports:
+         - 80:80
+    
+    test:
+        build: test
+        volumes:
+         - .:/usr/src/app
