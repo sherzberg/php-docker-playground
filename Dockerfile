@@ -14,6 +14,7 @@ RUN pip install supervisor
 
 ADD www.conf /etc/php/7.0/fpm/pool.d/
 ADD php-fpm.conf /etc/php/7.0/fpm/
+ADD nginx.conf /etc/nginx/
 ADD default /etc/nginx/sites-enabled/
 ADD supervisord.conf /usr/local/etc/supervisord.conf
 
@@ -23,4 +24,4 @@ RUN chown www-data:www-data /var/log/php-fpm.log
 
 ADD . /var/www/html/
 
-CMD ["/usr/local/bin/supervisord", "-n"]
+CMD ["/usr/local/bin/supervisord", "-n", "-c", "/usr/local/etc/supervisord.conf"]
